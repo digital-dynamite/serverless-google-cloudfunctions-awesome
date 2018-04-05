@@ -4,6 +4,47 @@
 
 This plugin enables support for [Google Cloud Functions](https://cloud.google.com/functions/) within the [Serverless Framework](https://github.com/serverless/serverless).
 
+
+## Why is this fork AWESOME?
+
+This repo is a fork of the official [Serverless Google Cloud Functions](https://github.com/serverless/serverless-google-cloudfunctions),
+but adds extra features for staging:
+
+In the `serverless.yml`, you can add `prependService` and `prependStage` to the `provider` key.
+
+For example, the configuration below
+
+```
+service: users
+
+provider:
+  name: google
+  runtime: nodejs
+  project: <project-id>
+  credentials: <credentials>
+  stage: purple
+  prependService: true
+  prependStage: true
+
+functions:
+  login:
+    handler: login
+    entryPoint: login
+    events:
+      - http: path
+```
+
+will deploy your Google Cloud Function with:
+
+`name: my-awesome-service-purple-login`
+
+`handler: login` // Note that the handler is not affected
+
+`trigger: https://us-central1-<project-id>.cloudfunctions.net/users-purple-login `
+
+*Special thanks to [@CaptainJojo](https://github.com/CaptainJojo) for his contribution to these awesome features.*
+
+
 ## Documentation
 
 The documentation can be found [here](https://serverless.com/framework/docs/providers/google).
