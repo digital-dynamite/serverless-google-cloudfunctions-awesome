@@ -1,19 +1,29 @@
 {
-  "name": "serverless-google-cloudfunctions",
-  "version": "1.1.1",
+  "name": "serverless-google-cloudfunctions-awesome",
+  "version": "1.2.0",
   "description": "Provider plugin for the Serverless Framework v1.x which adds support for Google Cloud Functions.",
   "main": "index.js",
   "author": "serverless.com",
+  "contributors": [
+    {
+      "name": "Simon Deshaies",
+      "url": "https://github.com/pre63"
+    },
+    {
+      "name": "Mark Massoud",
+      "url": "https://github.com/markmssd"
+    }
+  ],
   "license": "MIT",
   "repository": {
-    "git": "https://github.com/serverless/serverless-google-cloudfunctions"
+    "git": "https://github.com/digital-dynamite/serverless-google-cloudfunctions-awesome"
   },
   "scripts": {
     "test": "jest --maxWorkers=5",
     "coverage": "jest --maxWorkers=5 --coverage",
     "lint": "eslint . --cache"
   },
-  "homepage": "https://github.com/serverless/serverless-google-cloudfunctions",
+  "homepage": "https://github.com/digital-dynamite/serverless-google-cloudfunctions-awesome",
   "keywords": [
     "serverless",
     "serverless framework",

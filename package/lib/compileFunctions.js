@@ -21,6 +21,9 @@ module.exports = {
       this.serverless.cli
         .log(`Compiling function "${functionName}"...`);
 
+      funcObject.prependStage = _.get(funcObject, 'prependStage', this.options.prependStage);
+      funcObject.prependService = _.get(funcObject, 'prependService', this.options.prependService);
+
       validateHandlerProperty(funcObject, functionName);
       validateEventsProperty(funcObject, functionName);
       const funcTemplate = getFunctionTemplate(
