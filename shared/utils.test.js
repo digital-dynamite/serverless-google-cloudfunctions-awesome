@@ -42,6 +42,26 @@ describe('Utils', () => {
       });
     });
 
+    it('should prioritize options over provider options, even if booleans as strings', () => {
+      googleCommand.options.stage = 'my-stage';
+      googleCommand.options.region = 'my-region';
+      googleCommand.options.prependStage = 'false';
+      googleCommand.options.prependService = 'true';
+      googleCommand.serverless.service = {
+        provider: {
+          prependStage: true,
+          prependService: false,
+        },
+      };
+
+      return googleCommand.setDefaults().then(() => {
+        expect(googleCommand.options.stage).toEqual('my-stage');
+        expect(googleCommand.options.region).toEqual('my-region');
+        expect(googleCommand.options.prependStage).toEqual(false);
+        expect(googleCommand.options.prependService).toEqual(true);
+      });
+    });
+
     it('should prioritize options over provider options', () => {
       googleCommand.options.stage = 'my-stage';
       googleCommand.options.region = 'my-region';
