@@ -85,6 +85,19 @@ describe('GoogleProvider', () => {
         .toEqual(true);
       expect(authClient).toBeInstanceOf(google.auth.JWT);
     });
+
+    it('should parse credentials from JSON', () => {
+      googleProvider.serverless.service.provider.credentials = {
+        client_email: 'foo@bar.de',
+        private_key: 'wasdqwerty',
+      };
+
+      const authClient = googleProvider.getAuthClient();
+
+      expect(homedirStub.notCalled).toEqual(true);
+      expect(readFileSyncStub.notCalled).toEqual(true);
+      expect(authClient).toBeInstanceOf(google.auth.JWT);
+    });
   });
 
   describe('#isServiceSupported()', () => {

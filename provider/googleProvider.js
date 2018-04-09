@@ -79,15 +79,21 @@ class GoogleProvider {
 
   getAuthClient() {
     let credentials = this.serverless.service.provider.credentials;
-    const credParts = credentials.split(path.sep);
+    let key;
 
-    if (credParts[0] === '~') {
-      credParts[0] = os.homedir();
-      credentials = credParts.reduce((memo, part) => path.join(memo, part), '');
+    if (_.isPlainObject(credentials)) {
+      key = credentials;
+    } else {
+      const credParts = credentials.split(path.sep);
+
+      if (credParts[0] === '~') {
+        credParts[0] = os.homedir();
+        credentials = credParts.reduce((memo, part) => path.join(memo, part), '');
+      }
+
+      const keyFileContent = fs.readFileSync(credentials).toString();
+      key = JSON.parse(keyFileContent);
     }
-
-    const keyFileContent = fs.readFileSync(credentials).toString();
-    const key = JSON.parse(keyFileContent);
 
     return new google.auth
       .JWT(key.client_email, null, key.private_key, ['https://www.googleapis.com/auth/cloud-platform'], null);
