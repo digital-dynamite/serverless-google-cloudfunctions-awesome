@@ -414,6 +414,19 @@ describe('CompileFunctions', () => {
               event: {
                 eventType: 'foo',
                 resource: 'some-resource',
+                retry: false,
+              },
+            },
+          ],
+        },
+        func3: {
+          handler: 'func3',
+          events: [
+            {
+              event: {
+                eventType: 'foo',
+                resource: 'some-resource',
+                retry: true,
               },
             },
           ],
@@ -452,6 +465,26 @@ describe('CompileFunctions', () => {
             eventTrigger: {
               eventType: 'foo',
               resource: 'some-resource',
+            },
+            labels: {},
+          },
+        },
+        {
+          type: 'cloudfunctions.v1beta2.function',
+          name: 'my-service-dev-func3',
+          properties: {
+            location: 'us-central1',
+            entryPoint: 'func3',
+            function: 'func3',
+            availableMemoryMb: 256,
+            timeout: '60s',
+            sourceArchiveUrl: 'gs://sls-my-service-dev-12345678/some-path/artifact.zip',
+            eventTrigger: {
+              eventType: 'foo',
+              resource: 'some-resource',
+              failurePolicy: {
+                retry: {},
+              },
             },
             labels: {},
           },

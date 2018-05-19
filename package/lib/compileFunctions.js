@@ -32,8 +32,8 @@ module.exports = {
         this.options.stage,
         this.serverless.service.service,
         `gs://${
-        this.serverless.service.provider.deploymentBucketName
-        }/${this.serverless.service.package.artifactFilePath}`,
+          this.serverless.service.provider.deploymentBucketName
+          }/${this.serverless.service.package.artifactFilePath}`,
       );
 
       funcTemplate.properties.availableMemoryMb = _.get(funcObject, 'memorySize')
@@ -59,10 +59,12 @@ module.exports = {
         const type = funcObject.events[0].event.eventType;
         const path = funcObject.events[0].event.path; //eslint-disable-line
         const resource = funcObject.events[0].event.resource;
+        const retry = funcObject.events[0].event.retry;
 
         funcTemplate.properties.eventTrigger = {};
         funcTemplate.properties.eventTrigger.eventType = type;
         if (path) funcTemplate.properties.eventTrigger.path = path;
+        if (retry) funcTemplate.properties.eventTrigger.failurePolicy = { retry: {} };
         funcTemplate.properties.eventTrigger.resource = resource;
       }
 

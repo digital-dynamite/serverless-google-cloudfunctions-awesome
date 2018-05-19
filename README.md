@@ -42,6 +42,20 @@ will deploy your Google Cloud Function with:
 
 `trigger: https://us-central1-<project-id>.cloudfunctions.net/users-purple-login `
 
+
+It also adds an option to retry background jobs upon failure:
+```
+functions:
+  email:
+    handler: email
+    entryPoint: send
+    events:
+      - event:
+          eventType: providers/cloud.pubsub/eventTypes/topic.publish
+          resource: projects/${self:provider.project}/topics/${self:provider.stage}-new-account
+          retry: true
+```
+
 *Special thanks to [@CaptainJojo](https://github.com/CaptainJojo) for his contribution to these awesome features.*
 
 
