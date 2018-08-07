@@ -28,7 +28,7 @@ class GoogleProvider {
       logging: google.logging('v2'),
       // the following is just a dummy assignment and should be updated
       // once the official API is available
-      cloudfunctions: null,
+      cloudfunctions: google.cloudfunctions('v1'),
     };
   }
 
@@ -44,34 +44,21 @@ class GoogleProvider {
       this.isServiceSupported(service);
 
       const authClient = this.getAuthClient();
-      const discoveryURL = 'https://cloudfunctions.googleapis.com/$discovery/rest?version=v1beta2';
 
-      google.discoverAPI(discoveryURL, (discoveryError, cloudfunctions) => {
-        if (discoveryError) reject(new Error(discoveryError));
-        authClient.authorize(() => {
-          const requestParams = { auth: authClient };
+      authClient.authorize(() => {
+        const requestParams = { auth: authClient };
 
-          // merge the params from the request call into the base functionParams
-          _.merge(requestParams, params);
+        // merge the params from the request call into the base functionParams
+        _.merge(requestParams, params);
 
-          // use beta API if a call to the Cloud Functions service is done
-          if (service === 'cloudfunctions') {
-            filArgs.slice(1, filArgs.length)
-              .reduce((p, c) => p[c], cloudfunctions)(requestParams, (error, response) => {
-                if (error) reject(new Error(error));
-                return resolve(response);
-              });
-          } else {
-            // support for API calls with arbitrary deepness
-            filArgs.reduce((p, c) => p[c], this.sdk)(requestParams, (error, response) => {
-              if (error && error.errors && error.errors[0].message && error.errors[0].message.includes('project 1043443644444')) {
-                reject(new Error("Incorrect configuration. Please change the 'project' key in the 'provider' block in your Serverless config file."));
-              } else if (error) {
-                reject(new Error(error));
-              }
-              return resolve(response);
-            });
+        // support for API calls with arbitrary deepness
+        filArgs.reduce((p, c) => p[c], this.sdk)(requestParams, (error, response) => {
+          if (error && error.errors && error.errors[0].message && error.errors[0].message.includes('project 1043443644444')) {
+            reject(new Error("Incorrect configuration. Please change the 'project' key in the 'provider' block in your Serverless config file."));
+          } else if (error) {
+            reject(new Error(error));
           }
+          return resolve(response);
         });
       });
     });
