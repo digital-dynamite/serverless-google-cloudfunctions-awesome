@@ -19,6 +19,7 @@ describe('CompileFunctions', () => {
       artifactDirectoryName: 'some-path',
     };
     serverless.service.provider = {
+      project: 'gcloud-project-id',
       compiledConfigurationTemplate: {
         resources: [],
       },
@@ -109,9 +110,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'func1',
@@ -144,9 +146,10 @@ describe('CompileFunctions', () => {
       googlePackage.serverless.service.provider.memorySize = 1024;
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'func1',
@@ -179,9 +182,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'func1',
@@ -214,9 +218,10 @@ describe('CompileFunctions', () => {
       googlePackage.serverless.service.provider.timeout = '120s';
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'func1',
@@ -251,9 +256,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'func1',
@@ -290,9 +296,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'func1',
@@ -333,9 +340,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'func1',
@@ -370,9 +378,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'func1',
@@ -435,9 +444,10 @@ describe('CompileFunctions', () => {
 
       const compiledResources = [
         {
-          type: 'cloudfunctions.v1beta2.function',
+          type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
           name: 'my-service-dev-func1',
           properties: {
+            parent: 'projects/gcloud-project-id/locations/us-central1',
             location: 'us-central1',
             entryPoint: 'func1',
             function: 'func1',
@@ -453,9 +463,10 @@ describe('CompileFunctions', () => {
           },
         },
         {
-          type: 'cloudfunctions.v1beta2.function',
+          type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
           name: 'my-service-dev-func2',
           properties: {
+            parent: 'projects/gcloud-project-id/locations/us-central1',
             location: 'us-central1',
             entryPoint: 'func2',
             function: 'func2',
@@ -470,9 +481,10 @@ describe('CompileFunctions', () => {
           },
         },
         {
-          type: 'cloudfunctions.v1beta2.function',
+          type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
           name: 'my-service-dev-func3',
           properties: {
+            parent: 'projects/gcloud-project-id/locations/us-central1',
             location: 'us-central1',
             entryPoint: 'func3',
             function: 'func3',
@@ -510,9 +522,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'dev-func1',
@@ -536,6 +549,7 @@ describe('CompileFunctions', () => {
     it('should set stage/service in function name with prependStage', () => {
       googlePackage.options.prependStage = true;
       googlePackage.options.prependService = true;
+      googlePackage.options.project = 'digital-xyz';
       googlePackage.serverless.service.functions = {
         func1: {
           handler: 'func1',
@@ -546,9 +560,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'my-service-dev-func1',
@@ -584,9 +599,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'func1',
@@ -619,9 +635,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'my-service-func1',
@@ -655,9 +672,10 @@ describe('CompileFunctions', () => {
       };
 
       const compiledResources = [{
-        type: 'cloudfunctions.v1beta2.function',
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
         name: 'my-service-dev-func1',
         properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
           location: 'us-central1',
           entryPoint: 'func1',
           function: 'my-service-dev-func1',

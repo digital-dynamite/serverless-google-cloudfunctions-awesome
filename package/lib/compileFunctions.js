@@ -31,6 +31,7 @@ module.exports = {
         this.options.region,
         this.options.stage,
         this.serverless.service.service,
+        this.serverless.service.provider.project,
         `gs://${
           this.serverless.service.provider.deploymentBucketName
           }/${this.serverless.service.package.artifactFilePath}`,
@@ -116,7 +117,7 @@ const validateEventsProperty = (funcObject, functionName) => {
   }
 };
 
-const getFunctionTemplate = (funcObject, region, stage, service, sourceArchiveUrl) => { //eslint-disable-line
+const getFunctionTemplate = (funcObject, region, stage, service, project, sourceArchiveUrl) => { //eslint-disable-line
   let funcName = funcObject.handler;
 
   if (funcObject.prependStage) {
@@ -128,9 +129,10 @@ const getFunctionTemplate = (funcObject, region, stage, service, sourceArchiveUr
   }
 
   return {
-    type: 'cloudfunctions.v1beta2.function',
+    type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
     name: funcObject.name,
     properties: {
+      parent: `projects/${project}/locations/${region}`,
       location: region,
       availableMemoryMb: 256,
       timeout: '60s',

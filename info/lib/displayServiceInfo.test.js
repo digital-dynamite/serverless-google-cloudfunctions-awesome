@@ -117,10 +117,10 @@ describe('DisplayServiceInfo', () => {
       const resources = {
         resources: [
           { type: 'resource.which.should.be.filterered', name: 'someResource' },
-          { type: 'cloudfunctions.v1beta2.function', name: 'my-service-dev-func1' },
-          { type: 'cloudfunctions.v1beta2.function', name: 'my-service-dev-func2' },
-          { type: 'cloudfunctions.v1beta2.function', name: 'my-service-dev-func3' },
-          { type: 'cloudfunctions.v1beta2.function', name: 'my-service-dev-func4' },
+          { type: 'gcp-types/cloudfunctions-v1:projects.locations.functions', name: 'my-service-dev-func1' },
+          { type: 'gcp-types/cloudfunctions-v1:projects.locations.functions', name: 'my-service-dev-func2' },
+          { type: 'gcp-types/cloudfunctions-v1:projects.locations.functions', name: 'my-service-dev-func3' },
+          { type: 'gcp-types/cloudfunctions-v1:projects.locations.functions', name: 'my-service-dev-func4' },
         ],
       };
 
