@@ -134,7 +134,7 @@ const getFunctionTemplate = (funcObject, region, stage, service, sourceArchiveUr
   }
 
   return {
-    type: 'cloudfunctions.v1.function',
+    type: 'cloudfunctions.v1beta2.function',
     name: funcObject.name,
     properties: {
       location: region,
