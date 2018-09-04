@@ -20,6 +20,7 @@ describe('Utils', () => {
       .setDefaults().then(() => {
         expect(googleCommand.options.stage).toEqual('dev');
         expect(googleCommand.options.region).toEqual('us-central1');
+        expect(googleCommand.options.runtime).toEqual('nodejs8');
         expect(googleCommand.options.prependStage).toEqual(false);
         expect(googleCommand.options.prependService).toEqual(false);
       }));
@@ -27,6 +28,7 @@ describe('Utils', () => {
     it('should set the options when they are provided', () => {
       googleCommand.options.stage = 'my-stage';
       googleCommand.options.region = 'my-region';
+      googleCommand.options.runtime = 'nodejs6';
       googleCommand.serverless.service = {
         provider: {
           prependStage: true,
@@ -37,6 +39,7 @@ describe('Utils', () => {
       return googleCommand.setDefaults().then(() => {
         expect(googleCommand.options.stage).toEqual('my-stage');
         expect(googleCommand.options.region).toEqual('my-region');
+        expect(googleCommand.options.runtime).toEqual('nodejs6');
         expect(googleCommand.options.prependStage).toEqual(true);
         expect(googleCommand.options.prependService).toEqual(true);
       });

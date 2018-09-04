@@ -28,7 +28,7 @@ module.exports = {
       validateEventsProperty(funcObject, functionName);
       const funcTemplate = getFunctionTemplate(
         funcObject,
-        this.options.region,
+        _.get(funcObject, 'region', this.options.region),
         this.options.stage,
         this.serverless.service.service,
         this.serverless.service.provider.project,
@@ -40,6 +40,9 @@ module.exports = {
       funcTemplate.properties.availableMemoryMb = _.get(funcObject, 'memorySize')
         || _.get(this, 'serverless.service.provider.memorySize')
         || 256;
+      funcTemplate.properties.runtime = _.get(funcObject, 'runtime')
+        || _.get(this, 'serverless.service.provider.runtime')
+        || 'nodejs8';
       funcTemplate.properties.timeout = _.get(funcObject, 'timeout')
         || _.get(this, 'serverless.service.provider.timeout')
         || '60s';
@@ -135,6 +138,7 @@ const getFunctionTemplate = (funcObject, region, stage, service, project, source
       parent: `projects/${project}/locations/${region}`,
       location: region,
       availableMemoryMb: 256,
+      runtime: 'nodejs8',
       timeout: '60s',
       entryPoint: funcObject.handler,
       function: funcName,
