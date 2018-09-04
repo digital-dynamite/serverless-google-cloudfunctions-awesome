@@ -26,8 +26,6 @@ class GoogleProvider {
       deploymentmanager: google.deploymentmanager('v2'),
       storage: google.storage('v1'),
       logging: google.logging('v2'),
-      // the following is just a dummy assignment and should be updated
-      // once the official API is available
       cloudfunctions: google.cloudfunctions('v1'),
     };
   }
