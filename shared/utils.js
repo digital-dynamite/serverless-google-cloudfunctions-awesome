@@ -7,6 +7,7 @@ module.exports = {
   setDefaults() {
     this.options.stage = _.get(this, 'options.stage', 'dev');
     this.options.region = _.get(this, 'options.region', 'us-central1');
+    this.options.runtime = _.get(this, 'options.runtime', 'nodejs8');
 
     // Normalize booleans, since they're passed as strings
     if (this.options.prependStage === 'false') {
