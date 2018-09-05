@@ -28,7 +28,7 @@ module.exports = {
       validateEventsProperty(funcObject, functionName);
       const funcTemplate = getFunctionTemplate(
         funcObject,
-        _.get(funcObject, 'region', this.options.region),
+        _.get(this, 'serverless.service.provider.region', this.options.region),
         this.options.stage,
         this.serverless.service.service,
         this.serverless.service.provider.project,
@@ -136,7 +136,6 @@ const getFunctionTemplate = (funcObject, region, stage, service, project, source
     name: funcObject.name,
     properties: {
       parent: `projects/${project}/locations/${region}`,
-      location: region,
       availableMemoryMb: 256,
       runtime: 'nodejs8',
       timeout: '60s',
