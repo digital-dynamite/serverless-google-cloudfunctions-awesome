@@ -368,6 +368,54 @@ describe('CompileFunctions', () => {
       });
     });
 
+    it('should set the environment variables based on the provider configuration', () => {
+      googlePackage.serverless.service.functions = {
+        func1: {
+          handler: 'func1',
+          environment: {
+            TEST_VAR: 'overridden',
+            LOCAL_VAR: 'local',
+          },
+          events: [
+            { http: 'foo' },
+          ],
+        },
+      };
+      googlePackage.serverless.service.provider.environment = {
+        TEST_VAR: 'test',
+        TEST_VAR_2: 'test-2',
+      };
+
+      const compiledResources = [{
+        type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
+        name: 'my-service-dev-func1',
+        properties: {
+          parent: 'projects/gcloud-project-id/locations/us-central1',
+          runtime: 'nodejs8',
+          entryPoint: 'func1',
+          function: 'func1',
+          availableMemoryMb: 256,
+          environmentVariables: {
+            TEST_VAR: 'overridden',
+            TEST_VAR_2: 'test-2',
+            LOCAL_VAR: 'local',
+          },
+          timeout: '60s',
+          sourceArchiveUrl: 'gs://sls-my-service-dev-12345678/some-path/artifact.zip',
+          httpsTrigger: {
+            url: 'foo',
+          },
+          labels: {},
+        },
+      }];
+
+      return googlePackage.compileFunctions().then(() => {
+        expect(consoleLogStub.calledOnce).toEqual(true);
+        expect(googlePackage.serverless.service.provider.compiledConfigurationTemplate.resources)
+          .toEqual(compiledResources);
+      });
+    });
+
     it('should compile "http" events properly', () => {
       googlePackage.serverless.service.functions = {
         func1: {
