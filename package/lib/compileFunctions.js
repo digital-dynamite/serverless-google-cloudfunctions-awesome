@@ -139,6 +139,10 @@ const getFunctionTemplate = (funcObject, region, stage, service, project, source
     funcName = `${service}-${funcName}`;
   }
 
+  if (funcObject.prefix && funcObject.prefix !==null) {
+    funcName = `${funcObject.prefix}-${funcName}`;
+  }
+
   return {
     type: 'gcp-types/cloudfunctions-v1:projects.locations.functions',
     name: funcObject.name,

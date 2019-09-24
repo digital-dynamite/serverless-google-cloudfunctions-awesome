@@ -48,6 +48,13 @@ describe('DisplayServiceInfo', () => {
           { http: 'foo4' },
         ],
       },
+      func5: {
+        handler: 'handler',
+        prefix: 'my-prefix',
+        events: [
+          { http: 'foo4' },
+        ],
+      },
     };
     serverless.service.provider = {
       project: 'my-project',
@@ -121,6 +128,7 @@ describe('DisplayServiceInfo', () => {
           { type: 'gcp-types/cloudfunctions-v1:projects.locations.functions', name: 'my-service-dev-func2' },
           { type: 'gcp-types/cloudfunctions-v1:projects.locations.functions', name: 'my-service-dev-func3' },
           { type: 'gcp-types/cloudfunctions-v1:projects.locations.functions', name: 'my-service-dev-func4' },
+          { type: 'gcp-types/cloudfunctions-v1:projects.locations.functions', name: 'my-service-dev-func5' },
         ],
       };
 
@@ -146,6 +154,10 @@ describe('DisplayServiceInfo', () => {
             {
               name: 'func4',
               resource: 'https://us-central1-my-project.cloudfunctions.net/my-service-handler',
+            },
+            {
+              name: 'func5',
+              resource: 'https://us-central1-my-project.cloudfunctions.net/my-prefix-handler',
             },
           ],
         },

@@ -1,6 +1,6 @@
 {
   "name": "serverless-google-cloudfunctions-awesome",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "Provider plugin for the Serverless Framework v1.x which adds support for Google Cloud Functions.",
   "main": "index.js",
   "author": "serverless.com",
@@ -12,6 +12,10 @@
     {
       "name": "Mark Massoud",
       "url": "https://github.com/markmssd"
+    },
+    {
+      "name": "Andres Rodriguez",
+      "url": "https://github.com/felexx90"
     }
   ],
   "license": "MIT",

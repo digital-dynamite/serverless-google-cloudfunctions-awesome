@@ -55,6 +55,10 @@ module.exports = {
           funcName = `${this.serverless.service.service}-${funcName}`;
         }
 
+        if(serviceFunc.prefix && serviceFunc.prefix !== ''){
+          funcName = `${serviceFunc.prefix}-${funcName}`;
+        }
+
         if (eventType === 'http') {
           const region = this.options.region;
           const project = this.serverless.service.provider.project;
