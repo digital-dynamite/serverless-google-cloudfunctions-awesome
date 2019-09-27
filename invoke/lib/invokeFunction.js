@@ -80,5 +80,9 @@ const getGoogleCloudFunctionName = (serviceFunctions, func, stage, service) => {
     funcName = `${service}-${funcName}`;
   }
 
+  if (serviceFunctions[func].prefix && serviceFunctions[func].prefix!=='') {
+    funcName = `${serviceFunctions[func].prefix}-${funcName}`;
+  }
+
   return funcName;
 };

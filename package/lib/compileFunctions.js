@@ -140,7 +140,7 @@ const getFunctionTemplate = (funcObject, region, stage, service, project, source
     funcName = `${service}-${funcName}`;
   }
 
-  if (funcObject.prefix && funcObject.prefix !==null) {
+  if (funcObject.prefix && funcObject.prefix !=='') {
     funcName = `${funcObject.prefix}-${funcName}`;
   }
 

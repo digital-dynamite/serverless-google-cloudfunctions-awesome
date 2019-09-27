@@ -32,6 +32,10 @@ module.exports = {
     this.options.prependStage = _.isBoolean(optPrependStage) ? optPrependStage : _.get(this, 'serverless.service.provider.prependStage', false);
     this.options.prependService = _.isBoolean(optPrependService) ? optPrependService : _.get(this, 'serverless.service.provider.prependService', false);
 
+    const optPrefix = _.get(this, 'options.prefix');
+
+    this.options.prefix = _.isString(optPrefix) ? optPrefix : _.get(this, 'serverless.service.provider.prefix');
+
     return BbPromise.resolve();
   },
 };

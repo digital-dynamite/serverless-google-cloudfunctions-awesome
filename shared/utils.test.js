@@ -33,6 +33,7 @@ describe('Utils', () => {
         provider: {
           prependStage: true,
           prependService: true,
+          prefix: 'my-prefix'
         },
       };
 
@@ -42,6 +43,7 @@ describe('Utils', () => {
         expect(googleCommand.options.runtime).toEqual('nodejs6');
         expect(googleCommand.options.prependStage).toEqual(true);
         expect(googleCommand.options.prependService).toEqual(true);
+        expect(googleCommand.options.prefix).toEqual('my-prefix');
       });
     });
 
@@ -50,10 +52,12 @@ describe('Utils', () => {
       googleCommand.options.region = 'my-region';
       googleCommand.options.prependStage = 'false';
       googleCommand.options.prependService = 'true';
+      googleCommand.options.prefix = 'my-prefix';
       googleCommand.serverless.service = {
         provider: {
           prependStage: true,
           prependService: false,
+          prefix: 'my-prefix-2'
         },
       };
 
@@ -62,6 +66,7 @@ describe('Utils', () => {
         expect(googleCommand.options.region).toEqual('my-region');
         expect(googleCommand.options.prependStage).toEqual(false);
         expect(googleCommand.options.prependService).toEqual(true);
+        expect(googleCommand.options.prefix).toEqual('my-prefix');
       });
     });
 
