@@ -23,6 +23,7 @@ module.exports = {
 
       funcObject.prependStage = _.get(funcObject, 'prependStage', this.options.prependStage);
       funcObject.prependService = _.get(funcObject, 'prependService', this.options.prependService);
+      funcObject.prefix = _.get(funcObject, 'prefix', this.options.prefix);
 
       validateHandlerProperty(funcObject, functionName);
       validateEventsProperty(funcObject, functionName);
