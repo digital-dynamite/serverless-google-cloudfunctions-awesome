@@ -1,6 +1,6 @@
 {
   "name": "serverless-google-cloudfunctions-awesome",
-  "version": "1.3.9",
+  "version": "2.3.3",
   "description": "Provider plugin for the Serverless Framework v1.x which adds support for Google Cloud Functions.",
   "main": "index.js",
   "author": "serverless.com",
@@ -47,11 +47,11 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "coveralls": "^2.11.16",
+    "coveralls": "^3.0.5",
     "eslint": "^3.19.0",
-    "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.2.0",
-    "jest": "^19.0.2",
-    "sinon": "^7.5.0"
+    "eslint-config-airbnb-base": "^11.3.2",
+    "eslint-plugin-import": "^2.18.1",
+    "jest": "^24.8.0",
+    "sinon": "^7.3.2"
   }
 }

@@ -78,14 +78,14 @@ class GoogleProvider {
     let credentials = this.serverless.service.provider.credentials
       || process.env.GOOGLE_APPLICATION_CREDENTIALS;
     
-    const credParts = credentials.toString().split(path.sep);
+
+    const credParts = credentials.split(path.sep);
 
 
     if (credParts[0] === '~') {
       credParts[0] = os.homedir();
       credentials = credParts.reduce((memo, part) => path.join(memo, part), '');
     }
-
     const keyFileContent = fs.readFileSync(credentials).toString();
     const key = JSON.parse(keyFileContent);
 

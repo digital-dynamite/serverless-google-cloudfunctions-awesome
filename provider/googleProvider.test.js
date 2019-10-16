@@ -27,7 +27,7 @@ describe('GoogleProvider', () => {
     };
     setProviderStub = sinon.stub(serverless, 'setProvider').returns();
     readFileSyncStub = sinon.stub(fs, 'readFileSync')
-      .returns('{"client_email": "foo@bar.de","private_key": "wasdqwerty"}');
+      .returns('{"client_email":"foo@bar.de","private_key":"wasdqwerty"}');
     homedirStub = sinon.stub(os, 'homedir')
       .returns('/root');
     googleProvider = new GoogleProvider(serverless);
