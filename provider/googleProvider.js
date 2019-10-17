@@ -80,6 +80,7 @@ class GoogleProvider {
     
     console.log("credentials: " + credentials.toString());
 
+
     const credParts = credentials.split(path.sep);
 
     if (credParts[0] === '~') {
