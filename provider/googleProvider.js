@@ -78,7 +78,7 @@ class GoogleProvider {
     let credentials = this.serverless.service.provider.credentials
       || process.env.GOOGLE_APPLICATION_CREDENTIALS;
     
-    console.log("credentials: " + credentials.toString());
+    console.log("credentials: " + JSON.stringify(credentials));
 
     const credParts = credentials.split(path.sep);
 
