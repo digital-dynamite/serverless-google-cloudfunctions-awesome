@@ -90,6 +90,7 @@ class GoogleProvider {
       }
       const keyFileContent = fs.readFileSync(credentials).toString();
       key = JSON.parse(keyFileContent);
+
     }
 
     return new google.auth
