@@ -78,7 +78,6 @@ class GoogleProvider {
     let credentials = this.serverless.service.provider.credentials
       || process.env.GOOGLE_APPLICATION_CREDENTIALS;
     let key;
-
     if (_.isPlainObject(credentials)) {
       key = credentials;
     } else {
@@ -90,7 +89,6 @@ class GoogleProvider {
       }
       const keyFileContent = fs.readFileSync(credentials).toString();
       key = JSON.parse(keyFileContent);
-
     }
 
     return new google.auth
