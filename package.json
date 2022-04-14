@@ -43,7 +43,7 @@
     "serverless.com"
   ],
   "dependencies": {
-    "async": "^2.6.3",
+    "async": "^3.2.2",
     "bluebird": "^3.5.5",
     "chalk": "^2.4.2",
     "fs-extra": "^8.1.0",
